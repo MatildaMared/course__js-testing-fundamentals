@@ -19,9 +19,9 @@
 const { sum, subtract } = require("../math");
 const { expect } = require("./assertion-library");
 
-function test(title, callback) {
+async function test(title, callback) {
 	try {
-		callback();
+		await callback();
 		console.log(`✅ ${title}`);
 	} catch (error) {
 		console.error(`❌ ${title}`);
@@ -44,3 +44,5 @@ test("subtract subtracts numbers", () => {
 /**
  * Answer: Checkout the main branch for the answer.
  */
+
+module.exports = { test };
