@@ -16,17 +16,60 @@
  *
  * Execute: Use `node lessons/assertion-library.js` to run the test.
  */
-const {sum, subtract} = require('../math')
+const { sum, subtract } = require("../math");
 
-let result, expected
+function expect(actual) {
+	return {
+		toBe(expected) {
+			if (actual !== expected) {
+				throw new Error(`${actual} is not equal to ${expected}`);
+			}
+			console.log(`Passed! ✅ ${actual} is the same as ${expected}`);
+			return true;
+		},
+		toBeGreaterThan(expected) {
+			if (actual <= expected) {
+				throw new Error(`${actual} is not greater than ${expected}`);
+			}
+			console.log(`Passed! ✅ ${expected} is greater than ${actual}`);
+			return true;
+		},
+		toBeLessThan(expected) {
+			if (actual >= expected) {
+				throw new Error(`${actual} is not less than ${expected}`);
+			}
+			console.log(`Passed! ✅ ${expected} is less than ${actual}`);
+			return true;
+		},
+		toEqual(expected) {
+			const serializedActual = JSON.stringify(actual);
+			const serializedExpected = JSON.stringify(expected);
+			if (serializedActual !== serializedExpected) {
+				throw new Error(
+					`${serializedActual} is not equal to ${serializedExpected}`
+				);
+			}
+			console.log(
+				`Passed! ✅ ${serializedActual} is equal to ${serializedExpected}`
+			);
+			return true;
+		},
+	};
+}
 
-result = sum(3, 7)
-expected = 10
-expect(result).toBe(expected)
+let result, expected;
 
-result = subtract(7, 3)
-expected = 4
-expect(result).toBe(expected)
+result = ["3", "2", "1"];
+expected = ["3", "2", "1"];
+expect(result).toEqual(expected);
+
+result = sum(3, 7);
+expected = 10;
+expect(result).toBe(expected);
+
+result = subtract(7, 3);
+expected = 4;
+expect(result).toBe(expected);
 
 /**
  * Answer: Checkout the main branch for the answer.
