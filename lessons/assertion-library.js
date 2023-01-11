@@ -24,21 +24,18 @@ function expect(actual) {
 			if (actual !== expected) {
 				throw new Error(`${actual} is not equal to ${expected}`);
 			}
-			console.log(`Passed! ✅ ${actual} is the same as ${expected}`);
 			return true;
 		},
 		toBeGreaterThan(expected) {
 			if (actual <= expected) {
 				throw new Error(`${actual} is not greater than ${expected}`);
 			}
-			console.log(`Passed! ✅ ${expected} is greater than ${actual}`);
 			return true;
 		},
 		toBeLessThan(expected) {
 			if (actual >= expected) {
 				throw new Error(`${actual} is not less than ${expected}`);
 			}
-			console.log(`Passed! ✅ ${expected} is less than ${actual}`);
 			return true;
 		},
 		toEqual(expected) {
@@ -49,9 +46,6 @@ function expect(actual) {
 					`${serializedActual} is not equal to ${serializedExpected}`
 				);
 			}
-			console.log(
-				`Passed! ✅ ${serializedActual} is equal to ${serializedExpected}`
-			);
 			return true;
 		},
 	};
@@ -74,3 +68,5 @@ expect(result).toBe(expected);
 /**
  * Answer: Checkout the main branch for the answer.
  */
+
+module.exports = { expect };
